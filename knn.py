@@ -4,7 +4,7 @@ from sklearn.neighbors import KNeighborsClassifier  # Importamos el clasificador
 from sklearn.model_selection import GridSearchCV  # Para optimizar hiperparámetros con búsqueda en cuadrícula
 from sklearn.metrics import accuracy_score  # Para evaluar el modelo con precisión
 from main import get_data  # Importamos la función get_data() desde main.py para obtener los datos
-
+import joblib  # Para guardar el modelo entrenado
 # Importamos los datos desde el archivo main.py
 X_train, X_val, y_train, y_val = get_data()
 
@@ -33,3 +33,4 @@ accuracy_knn = accuracy_score(y_val, y_pred_knn)
 # Imprimimos los mejores parámetros y la precisión
 print("Mejores parámetros de K-NN:", grid_search_knn.best_params_)
 print("Precisión de K-NN:", accuracy_knn)
+joblib.dump(grid_search_knn.best_estimator_, 'knn_model.pkl')  # Guardamos el modelo

@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestClassifier  # Importamos el clasificado
 from sklearn.model_selection import GridSearchCV  # Para optimizar hiperparámetros con búsqueda en cuadrícula
 from sklearn.metrics import accuracy_score  # Para evaluar el modelo con precisión
 from main import get_data  # Importamos la función get_data() desde main.py para obtener los datos
-
+import joblib  # Para guardar y cargar el modelo entrenado
 # Importamos los datos desde el archivo main.py
 X_train, X_val, y_train, y_val = get_data()
 
@@ -34,3 +34,4 @@ accuracy_rf = accuracy_score(y_val, y_pred_rf)
 # Imprimimos los mejores parámetros y la precisión
 print("Mejores parámetros de Random Forest:", grid_search_rf.best_params_)
 print("Precisión de Random Forest:", accuracy_rf)
+joblib.dump(grid_search_rf.best_estimator_, 'random_forest_model.pkl')  # Guardamos el modelo

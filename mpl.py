@@ -3,7 +3,7 @@
 from sklearn.neural_network import MLPClassifier  # Importamos el modelo de Perceptrón Multicapa (MLP)
 from sklearn.metrics import accuracy_score  # Para evaluar la precisión del modelo
 from main import get_data  # Importamos la función get_data() desde main.py para obtener los datos
-
+import joblib  # Para guardar el modelo entrenado
 # Importamos los datos desde el archivo main.py
 X_train, X_val, y_train, y_val = get_data()
 
@@ -21,3 +21,6 @@ accuracy_mlp = accuracy_score(y_val, y_pred_mlp)
 
 # Imprimimos la precisión
 print(f"Precisión de MLP: {accuracy_mlp}")
+
+# Guardamos el modelo entrenado
+joblib.dump(mlp_model, 'mlp_model.pkl')

@@ -6,7 +6,7 @@ from sklearn.svm import SVC  # Usamos SVM como uno de los clasificadores base
 from sklearn.tree import DecisionTreeClassifier  # Usamos Árbol de Decisión como uno de los clasificadores base
 from sklearn.metrics import accuracy_score  # Para evaluar la precisión del modelo
 from main import get_data  # Importamos la función get_data() desde main.py para obtener los datos
-
+import joblib  # Para guardar el modelo entrenado
 # Importamos los datos desde el archivo main.py
 X_train, X_val, y_train, y_val = get_data()
 
@@ -34,3 +34,6 @@ accuracy_stack = accuracy_score(y_val, y_pred_stack)
 
 # Imprimimos la precisión
 print(f"Precisión de Stacking Classifier: {accuracy_stack}")
+
+# Guardamos el modelo entrenado
+joblib.dump(stacking_model, 'stacking_model.pkl')
